@@ -12,13 +12,24 @@ export default function InputTask() {
     const [task, setTask] = useState({
         idTask: "",
         taskName: "",
-        categoryName: ""
+        categoryTask: ""
     });
     const [error, setError] = useState(false);
     
     const onChangeTask = (e) => {
-        console.log("escribiendo");
+        setTask({
+            ...task,
+            [e.target.name]: e.target.value
+        })
     }
+
+    const onChangeCategoryTask = (e, data) => {
+        setTask({
+            ...task,
+            [data.name]: data.value
+        })
+    }
+
     return (
     <>
       <Grid centered columns={2}>
@@ -40,6 +51,7 @@ export default function InputTask() {
           name="categoryTask"
           placeholder="Categoria"
           value={task.categoryName}
+          onChange={onChangeCategoryTask}
         />
         <Button type="submit" color="violet">
           Añadir tarea
