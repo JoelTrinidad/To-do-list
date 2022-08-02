@@ -3,6 +3,7 @@ import "semantic-ui-css/semantic.min.css";
 import Container from "./components/Container";
 import Header from "./components/Header";
 import InputTask from "./components/InputTask";
+import TaskContent from "./components/TaskContent";
 
 function App() {
 
@@ -20,7 +21,6 @@ function App() {
     } else {
       localStorage.setItem("tasks", JSON.stringify([]));
     }
-    localStorage.setItem("tasks", JSON.stringify([]));
   }, [initialTasks, tasks]);
   
   const createTask = (task) => {
@@ -31,6 +31,7 @@ function App() {
     <Container>
       <Header></Header>      
       <InputTask createTask={createTask}></InputTask>
+      <TaskContent tasks={tasks}></TaskContent>
     </Container>
   );
 }
