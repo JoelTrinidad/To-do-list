@@ -1,4 +1,5 @@
 import { Header, Icon, Grid } from "semantic-ui-react";
+import Task from "./Task";
 
 export default function TaskContent(props) {
   const { tasks } = props;
@@ -13,7 +14,7 @@ export default function TaskContent(props) {
       </Header>
       <Grid.Row>
         {tasks.map((task, index) => (
-            <p>tareas</p>
+            <Task task={task}></Task>
         ))}
       </Grid.Row>
     </Grid>
