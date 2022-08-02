@@ -9,7 +9,7 @@ const options = [
     { key: "otra", text: "Otra", value: "otra" },
 ];
 
-export default function InputTask() {
+export default function InputTask(props) {
     const [task, setTask] = useState({
         idTask: "",
         taskName: "",
@@ -17,33 +17,43 @@ export default function InputTask() {
     });
     const [error, setError] = useState(false);
     
+    const { createTask } = props;
+    
     const onChangeTask = (e) => {
-        setTask({
-            ...task,
-            [e.target.name]: e.target.value
-        })
+      setTask({
+        ...task,
+        [e.target.name]: e.target.value
+      })
     }
-
+    
     const onChangeCategoryTask = (e, data) => {
-        setTask({
-            ...task,
-            [data.name]: data.value
-        })
+      setTask({
+        ...task,
+        [data.name]: data.value
+      })
     }
-
+    
     const onSubmitTask = (e) => {
       e.preventDefault();
-
+      
       if (task.taskName.trim() === "") {
         setError(true);
         return;
       } 
-
+      
       setError(false);
-
-      task.idTask = uuidv4()
+      
+      task.idTask = uuidv4();
+      
+      createTask(task);
+      
+      setTask({
+          idTask: "",
+          taskName: "",
+          categoryTask: ""
+      });
     }
-
+    
     return (
     <>
       <Grid centered columns={2}>
@@ -64,7 +74,7 @@ export default function InputTask() {
           className="select-form-task"
           name="categoryTask"
           placeholder="Categoria"
-          value={task.categoryName}
+          value={task.categoryTask}
           onChange={onChangeCategoryTask}
         />
         <Button type="submit" color="violet" onClick={onSubmitTask}>
