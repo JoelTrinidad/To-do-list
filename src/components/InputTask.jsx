@@ -1,5 +1,6 @@
 import { Select, Input, Button, Grid, Header, Icon } from "semantic-ui-react";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const options = [
     { key: "deporte", text: "Deporte", value: "deporte" },
@@ -37,8 +38,10 @@ export default function InputTask() {
         setError(true);
         return;
       } 
-      
+
       setError(false);
+
+      task.idTask = uuidv4()
     }
 
     return (
