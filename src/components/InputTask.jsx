@@ -30,6 +30,17 @@ export default function InputTask() {
         })
     }
 
+    const onSubmitTask = (e) => {
+      e.preventDefault();
+
+      if (task.taskName.trim() === "") {
+        setError(true);
+        return;
+      } 
+      
+      setError(false);
+    }
+
     return (
     <>
       <Grid centered columns={2}>
@@ -53,7 +64,7 @@ export default function InputTask() {
           value={task.categoryName}
           onChange={onChangeCategoryTask}
         />
-        <Button type="submit" color="violet">
+        <Button type="submit" color="violet" onClick={onSubmitTask}>
           Añadir tarea
         </Button>
       </Grid>
