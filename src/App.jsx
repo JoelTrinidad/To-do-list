@@ -27,11 +27,16 @@ function App() {
     setTasks([...tasks, task])
   }
 
+  const deleteTask = (id) => {
+    const currentTasks = tasks.filter((task) => task.idTask !== id);
+    setTasks(currentTasks);
+  }
+
   return (
     <Container>
       <Header></Header>      
       <InputTask createTask={createTask}></InputTask>
-      <TaskContent tasks={tasks}></TaskContent>
+      <TaskContent tasks={tasks} deleteTask={deleteTask} ></TaskContent>
     </Container>
   );
 }

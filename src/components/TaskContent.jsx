@@ -2,7 +2,7 @@ import { Header, Icon, Grid } from "semantic-ui-react";
 import Task from "./Task";
 
 export default function TaskContent(props) {
-  const { tasks } = props;
+  const { tasks, deleteTask } = props;
   if (tasks.length === 0) {
     return null;
   }
@@ -14,7 +14,7 @@ export default function TaskContent(props) {
       </Header>
       <Grid.Row>
         {tasks.map((task, index) => (
-            <Task task={task}></Task>
+            <Task task={task} key={index} deleteTask={deleteTask}></Task>
         ))}
       </Grid.Row>
     </Grid>
